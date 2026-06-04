@@ -1,5 +1,5 @@
 /**
- * Unsaid Games — Guessing Board Landing Page
+ * Unsaid Games — What in the Word Landing Page
  * Interactive behaviors: smooth scroll, nav, scroll animations
  */
 
