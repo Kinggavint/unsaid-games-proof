@@ -16,8 +16,9 @@
   --orange: #2563EB;
   --orange-dark: #1D4ED8;
   --orange-light: #93C5FD;
-  --purple: #9B8EC4;
-  --purple-light: #C4BBE0;
+  /* Blue-family accents (was purple) so the whole palette reads blue */
+  --purple: #1E40AF;
+  --purple-light: #93C5FD;
   --yellow: #FFD166;
   --yellow-light: #FFE5A0;
   --charcoal: #2D2D2D;
@@ -437,7 +438,7 @@ a { color: inherit; text-decoration: none; }
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(155,142,196,0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(30,64,175,0.12) 0%, transparent 70%);
   top: 10%;
   left: -60px;
   animation: floatSlow 8s ease-in-out infinite;
