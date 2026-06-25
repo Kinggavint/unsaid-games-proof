@@ -243,6 +243,13 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: var(--space-4xl);
 }
 
+.hero-top-image {
+  max-width: 250px;
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
 .hero-title {
   display: flex;
   flex-direction: column;
