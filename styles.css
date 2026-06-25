@@ -197,11 +197,15 @@ a { color: inherit; text-decoration: none; }
   position: relative;
 }
 
+.nav-links a.active {
+  color: var(--orange);
+}
+
 .nav-links a:not(.btn):hover {
   color: var(--orange);
 }
 
-.nav-links a:not(.btn):/after {
+.nav-links a:not(.btn)::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -213,7 +217,8 @@ a { color: inherit; text-decoration: none; }
   transition: width 0.3s ease;
 }
 
-.nav-links a:not(.btn):hover::after {
+.nav-links a:not(.btn):hover::after,
+.nav-links a.active::after {
   width: 100%;
 }
 
@@ -549,4 +554,94 @@ a { color: inherit; text-decoration: none; }
 @keyframes floatDot {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.5); }
+}
+
+/* --- Games Gallery Section --- */
+.bg-cream-light { background-color: var(--cream-light); }
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--charcoal-light);
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.games-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-4xl);
+}
+
+.game-showcase-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-showcase-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-logo-container {
+  aspect-ratio: 1 / 1;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.game-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-placeholder-icon {
+  font-size: 4rem;
+}
+
+.game-info {
+  padding: var(--space-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.game-desc {
+  font-size: 0.95rem;
+  color: var(--charcoal-light);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.game-meta-tags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.game-meta-tags span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--orange-light);
+  color: var(--orange-dark);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
 }
