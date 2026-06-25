@@ -11,16 +11,16 @@
 
 :root {
   /* Colors */
-  --cream: #F0F8F0;
-  --cream-light: #F7FEEE;
-  --orange: #10B981;
-  --orange-dark: #059669;
-  --orange-light: #A7F3D0;
+  --cream: #F0FBF0;
+  --cream-light: #F7FFF7;
+  --orange: #22C55E;
+  --orange-dark: #15803D;
+  --orange-light: #BBF7D0;
   /* Accents */
-  --purple: #047857;
-  --purple-light: #6EE7B7;
-  --yellow: #FFE666;
-  --yellow-light: #FFF5A0;
+  --purple: #166534;
+  --purple-light: #86EFAC;
+  --yellow: #CCF666;
+  --yellow-light: #E7FFB1;
   --charcoal: #2D2D2D;
   --charcoal-light: #555555;
   --white: #ffffff;
@@ -43,7 +43,7 @@
   --shadow-sm: 0 2px 8px rgba(45,45,45,0.06);
   --shadow-md: 0 4px 20px rgba(45,45,45,0.08);
   --shadow-lg: 0 8px 40px rgba(45,45,45,0.10);
-  --shadow-orange: 0 4px 24px rgba(16,185,129,0.35);
+  --shadow-orange: 0 4px 24px rgba(34,197,94,0.35);
 
   /* Radius */
   --radius-sm: 8px;
@@ -102,7 +102,7 @@ a { color: inherit; text-decoration: none; }
 
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 30px rgba(16,185,129,0.45);
+  box-shadow: 0 6px 30px rgba(34,197,94,0.45);
 }
 
 .btn-white {
@@ -133,7 +133,7 @@ a { color: inherit; text-decoration: none; }
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(240,248,240,0.85);
+  background: rgba(240,251,240,0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -447,7 +447,7 @@ a { color: inherit; text-decoration: none; }
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 70%);
   top: 10%;
   left: -60px;
   animation: floatSlow 8s ease-in-out infinite;
@@ -457,7 +457,7 @@ a { color: inherit; text-decoration: none; }
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16,185,129,0.10) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.10) 0%, transparent 70%);
   top: 20%;
   right: -100px;
   animation: floatSlow 10s ease-in-out infinite reverse;
@@ -467,7 +467,7 @@ a { color: inherit; text-decoration: none; }
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,230,102,0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(204, 246, 102, 0.12) 0%, transparent 70%);
   bottom: 20%;
   left: 10%;
   animation: floatSlow 7s ease-in-out infinite 2s;
