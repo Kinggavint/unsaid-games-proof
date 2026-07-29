@@ -25,6 +25,35 @@
     });
   }
 
+  // Ensure a Testimonials link exists in the nav across pages
+  if (navLinks) {
+    const hasTestimonials = !!navLinks.querySelector('a[href$="testimonials.html"]');
+    if (!hasTestimonials) {
+      const testimonialsLink = document.createElement('a');
+      testimonialsLink.href = 'testimonials.html';
+      testimonialsLink.textContent = 'Testimonials';
+
+      // Insert after Services if present, otherwise before the primary CTA, else at end
+      const servicesLink = navLinks.querySelector('a[href="services.html"]');
+      const ctaLink = navLinks.querySelector('a.btn');
+
+      if (servicesLink) {
+        servicesLink.insertAdjacentElement('afterend', testimonialsLink);
+      } else if (ctaLink) {
+        navLinks.insertBefore(testimonialsLink, ctaLink);
+      } else {
+        navLinks.appendChild(testimonialsLink);
+      }
+
+      if (navToggle) {
+        testimonialsLink.addEventListener('click', function () {
+          navToggle.classList.remove('is-open');
+          navLinks.classList.remove('is-open');
+        });
+      }
+    }
+  }
+
   // --- Scroll-Aware Navigation ---
   const nav = document.getElementById('nav');
   let lastScrollY = 0;
