@@ -1,6 +1,6 @@
 /**
  * Unsaid Games — You Word Never Guess Landing Page
- * Interactive behaviors: smooth scroll, nav, scroll animations
+ * Interactive behaviors: smooth scroll, nav, scroll animations, hero image injection
  */
 
 (function () {
@@ -25,12 +25,70 @@
     });
   }
 
+  // Ensure an About link exists in the nav across pages
+  if (navLinks) {
+    const hasAbout = !!navLinks.querySelector('a[href$="about.html"]');
+    if (!hasAbout) {
+      const aboutLink = document.createElement('a');
+      aboutLink.href = 'about.html';
+      aboutLink.textContent = 'About';
+
+      const servicesLink = navLinks.querySelector('a[href="services.html"]');
+      const ctaLink = navLinks.querySelector('a.btn');
+
+      if (servicesLink) {
+        servicesLink.insertAdjacentElement('beforebegin', aboutLink);
+      } else if (ctaLink) {
+        navLinks.insertBefore(aboutLink, ctaLink);
+      } else {
+        navLinks.appendChild(aboutLink);
+      }
+
+      if (navToggle) {
+        aboutLink.addEventListener('click', function () {
+          navToggle.classList.remove('is-open');
+          navLinks.classList.remove('is-open');
+        });
+      }
+    }
+  }
+
+  // Ensure a Testimonials link exists in the nav across pages
+  if (navLinks) {
+    const hasTestimonials = !!navLinks.querySelector('a[href$="testimonials.html"]');
+    if (!hasTestimonials) {
+      const testimonialsLink = document.createElement('a');
+      testimonialsLink.href = 'testimonials.html';
+      testimonialsLink.textContent = 'Testimonials';
+
+      // Insert after Services if present, otherwise before the primary CTA, else at end
+      const servicesLink = navLinks.querySelector('a[href="services.html"]');
+      const ctaLink = navLinks.querySelector('a.btn');
+
+      if (servicesLink) {
+        servicesLink.insertAdjacentElement('afterend', testimonialsLink);
+      } else if (ctaLink) {
+        navLinks.insertBefore(testimonialsLink, ctaLink);
+      } else {
+        navLinks.appendChild(testimonialsLink);
+      }
+
+      if (navToggle) {
+        testimonialsLink.addEventListener('click', function () {
+          navToggle.classList.remove('is-open');
+          navLinks.classList.remove('is-open');
+        });
+      }
+    }
+  }
+
   // --- Scroll-Aware Navigation ---
   const nav = document.getElementById('nav');
   let lastScrollY = 0;
   let ticking = false;
 
   function updateNav() {
+    if (!nav) return;
     const scrollY = window.scrollY;
 
     // Add scrolled state
@@ -137,4 +195,60 @@
   if (window.matchMedia('(min-width: 960px)').matches) {
     document.addEventListener('mousemove', handleMouseMove, { passive: true });
   }
+
+  // --- New: Inject hero images per page and set active nav link ---
+  document.addEventListener('DOMContentLoaded', function () {
+    // Determine hero image by path
+    var path = (window.location.pathname || '').toLowerCase();
+    var isServices = path.indexOf('services') !== -1;
+    var isAbout = path.indexOf('about') !== -1;
+    var isTestimonials = path.indexOf('testimonials') !== -1;
+
+    var blueSrc = '/public/uploads/liwc/a686b0b0-8db5-464f-bfa3-50d00ae18c29/hero-arcade-blue.png';
+    var blueAlt = 'Abstract neon blue arcade landscape with a glowing grid and wireframe mountains under a starry sky.';
+    var magentaSrc = '/public/uploads/liwc/a686b0b0-8db5-464f-bfa3-50d00ae18c29/hero-arcade-magenta.png';
+    var magentaAlt = 'Abstract neon magenta arcade scene with a glowing grid and purple sky filled with stars.';
+
+    var heroSrc = blueSrc;
+    var heroAlt = blueAlt;
+
+    if (isServices || isTestimonials) {
+      heroSrc = magentaSrc;
+      heroAlt = magentaAlt;
+    } else if (isAbout) {
+      heroSrc = blueSrc;
+      heroAlt = blueAlt;
+    }
+
+    // Find hero containers and inject image
+    var heroContainers = document.querySelectorAll('.hero, .services-hero, .page-hero');
+    heroContainers.forEach(function (section) {
+      if (!section.querySelector('.hero-bg-image')) {
+        var img = document.createElement('img');
+        img.className = 'hero-bg-image';
+        img.src = heroSrc;
+        img.alt = heroAlt;
+        img.decoding = 'async';
+        img.loading = 'eager';
+        section.insertBefore(img, section.firstChild);
+      }
+    });
+
+    // Set active link in nav
+    if (navLinks) {
+      var current = window.location.pathname.split('/').pop() || 'index.html';
+      var links = navLinks.querySelectorAll('a[href]');
+      links.forEach(function (a) {
+        var href = a.getAttribute('href');
+        // simple normalize
+        var file = (href || '').split('/').pop();
+        if (!file) return;
+
+        if ((current === 'index.html' && (file === 'index.html' || file === './' || file === '/')) ||
+            current === file) {
+          a.classList.add('active');
+        }
+      });
+    }
+  });
 })();
